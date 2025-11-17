@@ -3,92 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Группа АТК 24-51 — интерактивный сайт</title>
+    <title>АйТи-группа ATK 24-51</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --accent: #2b90d9;
+            --active: #1c6baf;
+            --nav-bg: #181e2a;
+            --main-bg: #f8fbff;
+            --block-bg: #fff;
+            --shadow: 0 4px 22px rgb(43 144 217 / 10%);
+            --radius: 15px;
+            --border: #e3e3ea;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--main-bg);
             margin: 0;
+            color: #222;
             min-height: 100vh;
-            color: #333;
         }
         header {
-            background-color: #4caf50;
+            background: linear-gradient(90deg, var(--accent) 12%, #6bc6ff 120%);
             color: white;
-            padding: 25px 0 12px 0;
+            padding: 37px 0 20px 0;
             text-align: center;
+            box-shadow: var(--shadow);
+        }
+        header h1 {
+            font-size: 2.1em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.17em;
+            margin: 0;
         }
         nav {
-            background: #222;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: var(--nav-bg);
             display: flex;
             justify-content: center;
+            box-shadow: var(--shadow);
         }
         nav button {
             background: none;
-            color: white;
-            padding: 16px 24px;
+            color: #f0f6ff;
+            padding: 17px 30px;
             border: none;
             cursor: pointer;
-            font-size: 1em;
-            margin: 0 2px;
+            font-size: 1.12em;
+            margin: 0 3px;
+            letter-spacing: 1px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-weight: 700;
             transition: background 0.2s;
         }
         nav button.active, nav button:hover {
-            background: #4caf50;
+            background: var(--accent);
             color: #fff;
-            border-radius: 4px 4px 0 0;
         }
-        .tab-content { display: none; padding: 22px 8vw; }
-        .tab-content.active { display: block; animation: fadein 0.28s; }
-        @keyframes fadein {
-            from { opacity: 0; }
-            to   { opacity: 1; }
+        .tab-content { display: none; padding: 30px 8vw; max-width: 1050px; margin: 0 auto;}
+        .tab-content.active { display: block; animation: fadein 0.3s;}
+        @keyframes fadein { from { opacity: 0; } to   { opacity: 1; } }
+        .block {
+            background: var(--block-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px 25px 18px 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
         }
-        /* Schedule */
-        .schedule-filter { margin-bottom:13px; }
-        .schedule-list li { margin-bottom: 6px; }
-        /* News */
-        #news-list li { margin-bottom: 7px; }
-        #add-news-btn { margin-top:10px; }
-        /* Gallery */
-        .gallery-container { display:flex; gap:10px; flex-wrap:wrap; }
-        .gallery-container img {width:170px; height:100px; object-fit:cover; border-radius:5px; cursor:pointer;}
-        #add-photo-btn { margin-top:10px; }
-        /* Gallery fullscreen overlay */
-        #gallery-modal {display:none; position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:900;}
-        #gallery-modal img {max-width:90vw;max-height:86vh;border-radius:12px;}
-        #gallery-modal span {position:absolute;top:30px;right:40px;color:#fff;font-size:26px;cursor:pointer;}
-        /* Contact form */
-        .contact-form {max-width:380px; margin-top:14px;}
-        .contact-form input, .contact-form textarea {width:100%;padding:8px;margin-bottom:10px;border:1px solid #bbb;border-radius:4px;font-size:1em;}
-        .contact-form button {background:#4caf50;color:#fff;border:none;padding:9px 18px;border-radius:4px;font-size:1em;}
-        /* Notification */
-        #notification {position:fixed;bottom:23px;left:50%; transform: translateX(-50%);background:#4caf50;color:#fff;padding:13px 35px;border-radius:8px;box-shadow:0 2px 14px rgba(76,175,80,0.12);z-index:1000;display:none;font-size:1.08em;}
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
+        /* О группе */
+        .about-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .about-illu {
+            width: 210px;
+            flex-shrink: 0;
+        }
+        .about-illu img { width: 100%; border-radius: 18px; box-shadow: 0 8px 30px #b2e1fd77;}
+        .about-desc h2 {
+            margin-top:0;font-size:1.5em;color:var(--accent);
+        }
+        /* Расписание */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f4f8ff;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 16px #b4def733;
+            overflow: hidden;
+            margin-bottom:0;
+        }
+        .schedule-table th, .schedule-table td {
+            padding: 10px 6px;
+            border: 1px solid #dce5ef;
             text-align: center;
-            padding: 13px 0 10px 0;
-            margin-top:45px;
+            font-size: 1em;
+        }
+        .schedule-table th {
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            font-size: 1.06em;
+        }
+        .schedule-table td.subject {
+            font-weight: 500;
+            color: #187fb7;
+            background: #e5f3ff;
+        }
+        .schedule-table td.teacher {
+            font-size: 0.95em;
+            color: #374359;
+        }
+        /* Новости */
+        .news-list {margin:0;padding:0;}
+        .news-list li {
+            display: flex; align-items: flex-start;
+            margin-bottom: 22px; gap:18px;
+            background: #e9f6fdab;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #b2e1fd33;
+            padding: 10px 15px;
+            border: 1px solid #d4e6f7;
+            list-style: none;
+        }
+        .news-list img {
+            width:80px; height:80px; object-fit:cover;
+            border-radius:8px; box-shadow:0 0 8px #b2e1fd66;
+        }
+        .news-text {font-size:1.09em;flex:1;}
+        .news-text strong {color:var(--accent);}
+        .news-list button {
+            background: #e74c3c; color:#fff;
+            border:none; border-radius:5px;
+            padding: 7px 10px; font-size:0.9em;
+            cursor:pointer;margin-left:8px;font-weight:bold;
+            margin-top: 22px;
+        }
+        #add-news-btn { margin-top:13px; background:var(--accent); color:#fff; font-weight:bold; border:none; padding:10px 16px; border-radius:10px; cursor:pointer;}
+        /* Галерея */
+        .gallery-container { display:flex; gap:13px; flex-wrap:wrap; }
+        .gallery-container img {width:180px; height:120px; object-fit:cover; border-radius:9px; cursor:pointer;box-shadow:0 4px 20px #b2e1fd40;}
+        #add-photo-btn { margin-top:12px; background:var(--accent);color:#fff;font-weight:bold;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;}
+        #gallery-modal {display:none; position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(26,88,122,0.86);justify-content:center;align-items:center;z-index:900;}
+        #gallery-modal img {max-width:94vw;max-height:86vh;border-radius:16px;box-shadow:0 8px 40px #88c9ef;}
+        #gallery-modal span {position:absolute;top:38px;right:48px;color:#fff;font-size:34px;cursor:pointer;}
+        /* Контакты */
+        .contact-form {max-width:420px; margin-top:14px;}
+        .contact-form input, .contact-form textarea {width:100%;padding:10px;margin-bottom:13px;border:1px solid #bbd0ee;border-radius:6px;font-size:1.05em;background:#eff7fe;}
+        .contact-form button {background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:1.07em;font-weight:bold;cursor:pointer;}
+        .contacts-list li {margin-bottom:9px;}
+        .tg-link {
+            display: inline-block; background:#229ed9; color:#fff;
+            padding:6px 12px; border-radius:5px; text-decoration: none;
+            font-weight: bold; font-size:1.05em; letter-spacing:0.5px; margin-left:2px;
+        }
+        #notification {position:fixed;bottom:30px;left:50%; transform:translateX(-50%);
+            background:var(--accent);color:#fff;
+            padding:15px 35px;border-radius:12px;
+            box-shadow:0 2px 14px #2b90d93a;z-index:1000;display:none;font-size:1.15em;}
+        footer {
+            background: var(--nav-bg); color: white; text-align: center;
+            padding: 16px 0 7px 0; margin-top:48px; letter-spacing:1px;font-size:1.08em;
+        }
+        @media screen and (max-width:950px){
+            .tab-content{padding:16px 2vw;}
+            .about-main{flex-direction:column;}
+            .about-illu{width:100%;text-align:center;}
+            .block{padding:18px 8px;}
         }
         @media screen and (max-width:650px){
-            .tab-content{padding:14px 2vw;}
             nav button{padding:10px 9px;}
-            .gallery-container img{width:90px;height:60px;}
-            .contact-form{max-width:98vw;}
+            .gallery-container img{width:96px;height:68px;}
+            .contact-form{max-width:97vw;}
+            .schedule-table {font-size:0.9em;}
+            .news-list img { width:49px; height:49px;}
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <h1>Группа АТК 24-51</h1>
-        <p>Добро пожаловать на интерактивную страницу группы!</p>
+        <h1>АйТи-группа ATK 24-51</h1>
+        <p>Твой билет в мир настоящих технологий! <br> Автоматизируем, программируем, придумываем, тестируем и делаем мир лучше.</p>
     </header>
-
-    <!-- Navigation Tabs -->
     <nav id="nav-tabs">
         <button class="active" data-tab="about">О группе</button>
         <button data-tab="schedule">Расписание</button>
@@ -96,88 +203,110 @@
         <button data-tab="gallery">Галерея</button>
         <button data-tab="contacts">Контакты</button>
     </nav>
-
-    <!-- Page Sections -->
     <section id="about" class="tab-content active">
-        <h2>О группе</h2>
-        <p>АТК 24-51 — учимся автоматизации и техническому контролю. Готовимся быть крутыми профи с современными системами для управления и производства.</p>
-        <ul>
-            <li>Участники: студенты и педагоги</li>
-            <li>Темы: автоматизация, электроника, безопасность, схемы, программирование</li>
-            <li>Помогаем друг другу, участвуем в мероприятиях, развиваемся</li>
-        </ul>
+        <div class="block about-main">
+            <div class="about-illu">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
+                alt="IT students illustration">
+            </div>
+            <div class="about-desc">
+                <h2>Кто мы?</h2>
+                <p>
+                Мы — команда ATK 24-51. <br>
+                Айтишники нового поколения: учим C++, Python, JavaScript, строим базы данных и крутые сайты, мечтаем попасть в Google (или создавать свой стартап).<br>
+                У нас весело: проводим внутренние хакатоны, ходим на мастер-классы, делимся мемами и идеями.<br>
+                Главное — всегда друг другу помогаем, потому что одна строка кода может изменить всё.<br>
+                Следи за нашими новостями — мы готовимся к новым победам!
+                </p>
+                <ul>
+                    <li><b>Темы</b>: программирование, автоматизация, математика, электроника, базы данных, кибербезопасность</li>
+                    <li><b>Мероприятия</b>: конкурсы, олимпиады, практики на предприятиях, совместные проекты</li>
+                </ul>
+            </div>
+        </div>
     </section>
-
     <section id="schedule" class="tab-content">
-        <h2>Расписание</h2>
-        <div class="schedule-filter">
-            <label for="dayFilter">Фильтр по дню:</label>
-            <select id="dayFilter">
-                <option value="all">Все дни</option>
-                <option value="Понедельник">Понедельник</option>
-                <option value="Вторник">Вторник</option>
-                <option value="Среда">Среда</option>
-                <option value="Четверг">Четверг</option>
-            </select>
+        <div class="block">
+            <h2 style="color:var(--accent);margin-top:0;">Расписание на неделю</h2>
+            <table class="schedule-table">
+                <tr>
+                    <th>День</th>
+                    <th>Время</th>
+                    <th>Предмет</th>
+                    <th>Преподаватель</th>
+                    <th>Аудитория</th>
+                </tr>
+                <tr><td>Понедельник</td><td>09:00–10:20</td><td class="subject">Дискретные структуры (лекция)</td><td class="teacher">Кулдашева Н.К.</td><td></td></tr>
+                <tr><td>Понедельник</td><td>10:30–11:50</td><td class="subject">Дискретные структуры (лекция)</td><td class="teacher">Кулдашева Н.К.</td><td></td></tr>
+                <tr><td>Понедельник</td><td>12:00–13:20</td><td class="subject">Электроника и схемотехника (лекция)</td><td class="teacher">Акрамов Н.С.</td><td></td></tr>
+                <tr><td>Понедельник</td><td>14:40–15:50</td><td class="subject">Компьютерные сети (практика)</td><td class="teacher">Насриддинов Б.З.</td><td></td></tr>
+                <tr><td>Вторник</td><td>09:00–10:20</td><td class="subject">Компьютерные сети (практика)</td><td class="teacher">Насриддинов Б.З.</td><td></td></tr>
+                <tr><td>Вторник</td><td>10:30–11:50</td><td class="subject">Базы данных (лекция)</td><td class="teacher">Мусаджанова Д.А.</td><td></td></tr>
+                <tr><td>Вторник</td><td>12:00–13:20</td><td class="subject">Введение в алгебру</td><td class="teacher">Акрамов Н.С.</td><td>404</td></tr>
+                <tr><td>Вторник</td><td>14:00–15:20</td><td class="subject">Введение в алгебру (практика)</td><td class="teacher">Акрамов Н.С.</td><td>404</td></tr>
+                <tr><td>Среда</td><td>09:00–10:20</td><td class="subject">Электроника и схемотехника</td><td class="teacher">Насриддинов Б.З.</td><td></td></tr>
+                <tr><td>Среда</td><td>10:30–11:50</td><td class="subject">Базы данных (лекция)</td><td class="teacher">Мусаджанова Д.А.</td><td></td></tr>
+                <tr><td>Среда</td><td>12:00–13:20</td><td class="subject">Базы данных (практика)</td><td class="teacher">Мусаджанова Д.А.</td><td></td></tr>
+                <tr><td>Среда</td><td>14:00–15:20</td><td class="subject">Введение в алгебру (лекция)</td><td class="teacher">Акрамов Н.С.</td><td>307</td></tr>
+                <tr><td>Четверг</td><td>09:00–10:20</td><td class="subject">Базы данных (лекция)</td><td class="teacher">Мусаджанова Д.А.</td><td></td></tr>
+                <tr><td>Четверг</td><td>10:30–11:50</td><td class="subject">Электроника и схемотехника</td><td class="teacher">Насриддинов Б.З.</td><td></td></tr>
+                <tr><td>Четверг</td><td>12:00–13:20</td><td class="subject">Введение в алгебру (лекция)</td><td class="teacher">Акрамов Н.С.</td><td></td></tr>
+                <tr><td>Четверг</td><td>14:00–15:20</td><td class="subject">Введение в алгебру (практика)</td><td class="teacher">Акрамов Н.С.</td><td>404</td></tr>
+                <tr><td>Четверг</td><td>15:30–16:50</td><td class="subject">Дискретные структуры (практика)</td><td class="teacher">Кулдашева Н.К.</td><td></td></tr>
+            </table>
         </div>
-        <ul class="schedule-list" id="schedule-list">
-            <!-- будет динамически -->
-        </ul>
     </section>
-
     <section id="news" class="tab-content">
-        <h2>Новости</h2>
-        <ul id="news-list">
-            <!-- Новости будут динамически -->
-        </ul>
-        <button id="add-news-btn">Добавить новость</button>
+        <div class="block">
+            <h2 style="color:var(--accent);margin-top:0;">Новости и события</h2>
+            <ul class="news-list" id="news-list"></ul>
+            <button id="add-news-btn">Добавить новость</button>
+        </div>
     </section>
-
     <section id="gallery" class="tab-content">
-        <h2>Галерея</h2>
-        <div class="gallery-container" id="gallery-container">
-            <!-- Фото появятся здесь -->
-        </div>
-        <button id="add-photo-btn">Добавить фото</button>
-        <!-- Модальное окно для просмотра фото -->
-        <div id="gallery-modal">
-            <span id="close-modal">&times;</span>
-            <img src="" alt="Фото группы">
+        <div class="block">
+            <h2 style="color:var(--accent);margin-top:0;">Галерея группы</h2>
+            <div class="gallery-container" id="gallery-container"></div>
+            <button id="add-photo-btn">Добавить фото</button>
+            <div id="gallery-modal">
+                <span id="close-modal">&times;</span>
+                <img src="" alt="Фото группы">
+            </div>
         </div>
     </section>
-
     <section id="contacts" class="tab-content">
-        <h2>Контакты и обратная связь</h2>
-        <ul>
-            <li>Email: atc24-51@example.com</li>
-            <li>Телефон: +7 (123) 456-78-90</li>
-        </ul>
-        <form class="contact-form" id="contact-form">
-            <input type="text" id="cf-name" placeholder="Ваше имя" required>
-            <input type="email" id="cf-email" placeholder="Ваш Email" required>
-            <textarea id="cf-message" rows="3" placeholder="Сообщение" required></textarea>
-            <button type="submit">Отправить сообщение</button>
-        </form>
+        <div class="block">
+            <h2 style="color:var(--accent);margin-top:0;">Контакты и обратная связь</h2>
+            <ul class="contacts-list">
+                <li><b>Email:</b> atc24-51@example.com</li>
+                <li><b>Телефон:</b> +7 (123) 456-78-90</li>
+                <li><b>Telegram:</b> <a href="https://t.me/iittlit" class="tg-link" target="_blank">@iittlit</a></li>
+            </ul>
+            <form class="contact-form" id="contact-form">
+                <input type="text" id="cf-name" placeholder="Ваше имя" required>
+                <input type="email" id="cf-email" placeholder="Ваш Email" required>
+                <textarea id="cf-message" rows="3" placeholder="Сообщение" required></textarea>
+                <button type="submit">Отправить сообщение</button>
+            </form>
+        </div>
     </section>
-
     <div id="notification"></div>
-
     <footer>
-        <p>&copy; 2025 Группа АТК 24-51. Все права защищены.</p>
+        &copy; 2025 АйТи-группа ATK 24-51. Все права защищены.
     </footer>
-
     <script>
     // --- ДАННЫЕ ---
-    const scheduleData = [
-        {day:"Понедельник", time:"9:00", title:"Лекция по автоматике"},
-        {day:"Вторник", time:"10:30", title:"Практика по контролю"},
-        {day:"Среда", time:"13:00", title:"Лекция по управлению"},
-        {day:"Четверг", time:"10:30", title:"Электроника и схемы"},
-        {day:"Понедельник", time:"15:00", title:"Дополнительный семинар"},
-    ];
     let newsData = [
-        {date:"10 ноября", text:"Участие в конференции по автоматизации."},
-        {date:"12 ноября", text:"Визит на предприятие для практики."}
+        {
+            date:"10 ноября",
+            text:"Участие в международной конференции IT и автоматизации!",
+            img:"https://images.unsplash.com/photo-1513258496099-48168024aec0"
+        },
+        {
+            date:"12 ноября",
+            text:"Наши студенты прошли практику на настоящем IT-предприятии.",
+            img:"https://images.unsplash.com/photo-1503676382389-4809596d5290"
+        }
     ];
     let galleryData = [
         {src:"https://images.unsplash.com/photo-1513258496099-48168024aec0", alt:"Группа на практике"},
@@ -195,37 +324,22 @@
         });
     });
 
-    // --- РАСПИСАНИЕ с ФИЛЬТРОМ ---
-    function renderSchedule() {
-        const filter = document.getElementById("dayFilter").value;
-        const list = document.getElementById("schedule-list");
-        list.innerHTML = "";
-        scheduleData.forEach(sch => {
-            if (filter === "all" || sch.day === filter) {
-                const li = document.createElement("li");
-                li.textContent = sch.day + ": " + sch.time + " — " + sch.title;
-                list.appendChild(li);
-            }
-        });
-    }
-    document.getElementById("dayFilter").onchange = renderSchedule;
-    renderSchedule();
-
-    // --- НОВОСТИ (добавление, удаление) ---
+    // --- НОВОСТИ (добавление, удаление, c фото) ---
     function renderNews() {
         const list = document.getElementById("news-list");
         list.innerHTML = "";
         newsData.forEach((news, idx) => {
             const li = document.createElement("li");
-            li.textContent = news.date + ": " + news.text;
+            const imgEl = document.createElement("img");
+            imgEl.src = news.img;
+            imgEl.alt = "Фото новости";
+            const textDiv = document.createElement("div");
+            textDiv.className = "news-text";
+            textDiv.innerHTML = `<strong>${news.date}</strong>: ${news.text}`;
+            li.appendChild(imgEl);
+            li.appendChild(textDiv);
             const delBtn = document.createElement("button");
             delBtn.textContent = "Удалить";
-            delBtn.style.marginLeft = "14px";
-            delBtn.style.background = "#e74c3c";
-            delBtn.style.color = "#fff";
-            delBtn.style.border = "none";
-            delBtn.style.borderRadius = "3px";
-            delBtn.style.cursor = "pointer";
             delBtn.onclick = () => {
                 if (confirm("Удалить эту новость?")) {
                     newsData.splice(idx, 1);
@@ -241,9 +355,10 @@
     document.getElementById("add-news-btn").onclick = function() {
         const text = prompt("Введите текст новости:");
         if (text) {
+            let url = prompt("Вставьте ссылку на фото (URL):");
             let now = new Date();
             let date = now.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long' });
-            newsData.unshift({date: date, text});
+            newsData.unshift({date: date, text:text, img: url || "https://via.placeholder.com/70x70.png?text=Фото"});
             renderNews();
             showNotify("Новость добавлена!");
         }
@@ -288,6 +403,7 @@
         });
     }
     renderGallery();
+
     document.getElementById("add-photo-btn").onclick = function() {
         const url = prompt("Вставьте ссылку на фото (URL):");
         if (url && url.startsWith("http")) {
@@ -319,7 +435,6 @@
         const email = document.getElementById("cf-email").value.trim();
         const msg = document.getElementById("cf-message").value.trim();
         if (!name || !email || !msg) { alert("Заполните все поля!"); return; }
-        // Простейшая валидация email
         if (!email.match(/.+@.+\..+/)) { alert("Введите корректный email!"); return; }
         showNotify("Спасибо "+name+"! Ваше сообщение отправлено.");
         e.target.reset();
@@ -329,8 +444,8 @@
     function showNotify(msg){
         const notif = document.getElementById("notification");
         notif.textContent = msg;
-        notif.style.display="block";
-        setTimeout(()=>notif.style.display="none",2400);
+        notif.style.display = "block";
+        setTimeout(()=>notif.style.display="none",2500);
     }
     </script>
 </body>
