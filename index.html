@@ -3,119 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Группа АТК 24-51</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Группа АТК 24-51 — интерактивный сайт</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
             color: #333;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #4caf50;
             color: white;
-            padding: 20px 0;
+            padding: 25px 0 12px 0;
             text-align: center;
         }
         nav {
-            background-color: #333;
-            overflow: hidden;
+            background: #222;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            display: flex;
+            justify-content: center;
         }
-        nav a {
+        nav button {
+            background: none;
             color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            display: inline-block;
+            padding: 16px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 0 2px;
+            transition: background 0.2s;
         }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
+        nav button.active, nav button:hover {
+            background: #4caf50;
+            color: #fff;
+            border-radius: 4px 4px 0 0;
         }
-        section {
-            padding: 20px;
+        .tab-content { display: none; padding: 22px 8vw; }
+        .tab-content.active { display: block; animation: fadein 0.28s; }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
+        /* Schedule */
+        .schedule-filter { margin-bottom:13px; }
+        .schedule-list li { margin-bottom: 6px; }
+        /* News */
+        #news-list li { margin-bottom: 7px; }
+        #add-news-btn { margin-top:10px; }
+        /* Gallery */
+        .gallery-container { display:flex; gap:10px; flex-wrap:wrap; }
+        .gallery-container img {width:170px; height:100px; object-fit:cover; border-radius:5px; cursor:pointer;}
+        #add-photo-btn { margin-top:10px; }
+        /* Gallery fullscreen overlay */
+        #gallery-modal {display:none; position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:900;}
+        #gallery-modal img {max-width:90vw;max-height:86vh;border-radius:12px;}
+        #gallery-modal span {position:absolute;top:30px;right:40px;color:#fff;font-size:26px;cursor:pointer;}
+        /* Contact form */
+        .contact-form {max-width:380px; margin-top:14px;}
+        .contact-form input, .contact-form textarea {width:100%;padding:8px;margin-bottom:10px;border:1px solid #bbb;border-radius:4px;font-size:1em;}
+        .contact-form button {background:#4caf50;color:#fff;border:none;padding:9px 18px;border-radius:4px;font-size:1em;}
+        /* Notification */
+        #notification {position:fixed;bottom:23px;left:50%; transform: translateX(-50%);background:#4caf50;color:#fff;padding:13px 35px;border-radius:8px;box-shadow:0 2px 14px rgba(76,175,80,0.12);z-index:1000;display:none;font-size:1.08em;}
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            padding: 13px 0 10px 0;
+            margin-top:45px;
+        }
+        @media screen and (max-width:650px){
+            .tab-content{padding:14px 2vw;}
+            nav button{padding:10px 9px;}
+            .gallery-container img{width:90px;height:60px;}
+            .contact-form{max-width:98vw;}
         }
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <header>
         <h1>Группа АТК 24-51</h1>
-        <p>Добро пожаловать на официальную страницу группы АТК 24-51</p>
+        <p>Добро пожаловать на интерактивную страницу группы!</p>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">О группе</a>
-        <a href="#schedule">Расписание</a>
-        <a href="#news">Новости</a>
-        <a href="#gallery">Галерея</a>
-        <a href="#contacts">Контакты</a>
+    <!-- Navigation Tabs -->
+    <nav id="nav-tabs">
+        <button class="active" data-tab="about">О группе</button>
+        <button data-tab="schedule">Расписание</button>
+        <button data-tab="news">Новости</button>
+        <button data-tab="gallery">Галерея</button>
+        <button data-tab="contacts">Контакты</button>
     </nav>
 
-    <!-- Main content -->
-    <section id="about">
+    <!-- Page Sections -->
+    <section id="about" class="tab-content active">
         <h2>О группе</h2>
-        <p>Группа АТК 24-51 — это студенты (или профессионалы) в области автоматизации и технического контроля. Мы учимся работать с современными системами, обеспечивающими эффективность производства и управления.</p>
+        <p>АТК 24-51 — учимся автоматизации и техническому контролю. Готовимся быть крутыми профи с современными системами для управления и производства.</p>
+        <ul>
+            <li>Участники: студенты и педагоги</li>
+            <li>Темы: автоматизация, электроника, безопасность, схемы, программирование</li>
+            <li>Помогаем друг другу, участвуем в мероприятиях, развиваемся</li>
+        </ul>
     </section>
 
-    <section id="schedule">
+    <section id="schedule" class="tab-content">
         <h2>Расписание</h2>
-        <p>Наше расписание обновляется каждый семестр. Убедитесь, что вы всегда в курсе актуальных событий и лекций.</p>
-        <ul>
-            <li>Понеделник: 9:00 - Лекция по автоматике</li>
-            <li>Вторник: 10:30 - Практическое занятие</li>
-            <li>Среда: 13:00 - Лекция по управлению</li>
-            <li>Четверг: 10:30 - Электроника и схемы</li>
-            <!-- Дополнительные занятия -->
+        <div class="schedule-filter">
+            <label for="dayFilter">Фильтр по дню:</label>
+            <select id="dayFilter">
+                <option value="all">Все дни</option>
+                <option value="Понедельник">Понедельник</option>
+                <option value="Вторник">Вторник</option>
+                <option value="Среда">Среда</option>
+                <option value="Четверг">Четверг</option>
+            </select>
+        </div>
+        <ul class="schedule-list" id="schedule-list">
+            <!-- будет динамически -->
         </ul>
     </section>
 
-    <section id="news">
+    <section id="news" class="tab-content">
         <h2>Новости</h2>
-        <p>Следите за новыми событиями и мероприятиями группы:</p>
-        <ul>
-            <li>10 ноября: Участие в конференции по автоматизации.</li>
-            <li>12 ноября: Визит на производственное предприятие для практики.</li>
-            <!-- Добавьте другие новости -->
+        <ul id="news-list">
+            <!-- Новости будут динамически -->
         </ul>
+        <button id="add-news-btn">Добавить новость</button>
     </section>
 
-    <section id="gallery">
+    <section id="gallery" class="tab-content">
         <h2>Галерея</h2>
-        <p>Фотографии с наших мероприятий, практик и обучающих сессий.</p>
-        <div>
-            <!-- Вставьте изображения -->
-            <img src="image1.jpg" alt="Фотография 1" width="200">
-            <img src="image2.jpg" alt="Фотография 2" width="200">
+        <div class="gallery-container" id="gallery-container">
+            <!-- Фото появятся здесь -->
+        </div>
+        <button id="add-photo-btn">Добавить фото</button>
+        <!-- Модальное окно для просмотра фото -->
+        <div id="gallery-modal">
+            <span id="close-modal">&times;</span>
+            <img src="" alt="Фото группы">
         </div>
     </section>
 
-    <section id="contacts">
-        <h2>Контакты</h2>
-        <p>Если у вас есть вопросы, пишите нам:</p>
+    <section id="contacts" class="tab-content">
+        <h2>Контакты и обратная связь</h2>
         <ul>
             <li>Email: atc24-51@example.com</li>
             <li>Телефон: +7 (123) 456-78-90</li>
         </ul>
+        <form class="contact-form" id="contact-form">
+            <input type="text" id="cf-name" placeholder="Ваше имя" required>
+            <input type="email" id="cf-email" placeholder="Ваш Email" required>
+            <textarea id="cf-message" rows="3" placeholder="Сообщение" required></textarea>
+            <button type="submit">Отправить сообщение</button>
+        </form>
     </section>
 
-    <!-- Footer -->
+    <div id="notification"></div>
+
     <footer>
         <p>&copy; 2025 Группа АТК 24-51. Все права защищены.</p>
     </footer>
 
+    <script>
+    // --- ДАННЫЕ ---
+    const scheduleData = [
+        {day:"Понедельник", time:"9:00", title:"Лекция по автоматике"},
+        {day:"Вторник", time:"10:30", title:"Практика по контролю"},
+        {day:"Среда", time:"13:00", title:"Лекция по управлению"},
+        {day:"Четверг", time:"10:30", title:"Электроника и схемы"},
+        {day:"Понедельник", time:"15:00", title:"Дополнительный семинар"},
+    ];
+    let newsData = [
+        {date:"10 ноября", text:"Участие в конференции по автоматизации."},
+        {date:"12 ноября", text:"Визит на предприятие для практики."}
+    ];
+    let galleryData = [
+        {src:"https://images.unsplash.com/photo-1513258496099-48168024aec0", alt:"Группа на практике"},
+        {src:"https://images.unsplash.com/photo-1503676382389-4809596d5290", alt:"Наши занятия"}
+    ];
+
+    // --- НАВИГАЦИЯ ВКЛАДКИ ---
+    document.querySelectorAll("#nav-tabs button").forEach(tab => {
+        tab.addEventListener("click", function() {
+            document.querySelectorAll("#nav-tabs button").forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+            document.querySelectorAll(".tab-content").forEach(sec => sec.classList.remove("active"));
+            document.getElementById(this.dataset.tab).classList.add("active");
+            window.scrollTo({top:0});
+        });
+    });
+
+    // --- РАСПИСАНИЕ с ФИЛЬТРОМ ---
+    function renderSchedule() {
+        const filter = document.getElementById("dayFilter").value;
+        const list = document.getElementById("schedule-list");
+        list.innerHTML = "";
+        scheduleData.forEach(sch => {
+            if (filter === "all" || sch.day === filter) {
+                const li = document.createElement("li");
+                li.textContent = sch.day + ": " + sch.time + " — " + sch.title;
+                list.appendChild(li);
+            }
+        });
+    }
+    document.getElementById("dayFilter").onchange = renderSchedule;
+    renderSchedule();
+
+    // --- НОВОСТИ (добавление, удаление) ---
+    function renderNews() {
+        const list = document.getElementById("news-list");
+        list.innerHTML = "";
+        newsData.forEach((news, idx) => {
+            const li = document.createElement("li");
+            li.textContent = news.date + ": " + news.text;
+            const delBtn = document.createElement("button");
+            delBtn.textContent = "Удалить";
+            delBtn.style.marginLeft = "14px";
+            delBtn.style.background = "#e74c3c";
+            delBtn.style.color = "#fff";
+            delBtn.style.border = "none";
+            delBtn.style.borderRadius = "3px";
+            delBtn.style.cursor = "pointer";
+            delBtn.onclick = () => {
+                if (confirm("Удалить эту новость?")) {
+                    newsData.splice(idx, 1);
+                    renderNews();
+                    showNotify("Новость удалена");
+                }
+            };
+            li.appendChild(delBtn);
+            list.appendChild(li);
+        });
+    }
+    renderNews();
+    document.getElementById("add-news-btn").onclick = function() {
+        const text = prompt("Введите текст новости:");
+        if (text) {
+            let now = new Date();
+            let date = now.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long' });
+            newsData.unshift({date: date, text});
+            renderNews();
+            showNotify("Новость добавлена!");
+        }
+    };
+
+    // --- ГАЛЕРЕЯ (просмотр, добавление, удаление) ---
+    function renderGallery() {
+        const cont = document.getElementById("gallery-container");
+        cont.innerHTML = "";
+        galleryData.forEach((img, idx) => {
+            const imgEl = document.createElement("img");
+            imgEl.src = img.src;
+            imgEl.alt = img.alt;
+            imgEl.title = img.alt;
+            imgEl.onclick = () => showGalleryFull(img.src);
+            // Кнопка удаления
+            const wrap = document.createElement("div");
+            wrap.style.position = "relative";
+            wrap.appendChild(imgEl);
+            const delBtn = document.createElement("button");
+            delBtn.textContent = "×";
+            delBtn.style.position = "absolute";
+            delBtn.style.top = "2px";
+            delBtn.style.right = "8px";
+            delBtn.style.background = "#e74c3c";
+            delBtn.style.color = "#fff";
+            delBtn.style.border = "none";
+            delBtn.style.borderRadius = "50%";
+            delBtn.style.width = "24px";
+            delBtn.style.height = "24px";
+            delBtn.style.cursor = "pointer";
+            delBtn.onclick = (e) => {
+                e.stopPropagation();
+                if(confirm("Удалить фото?")){
+                    galleryData.splice(idx,1);
+                    renderGallery();
+                    showNotify("Фото удалено");
+                }
+            };
+            wrap.appendChild(delBtn);
+            cont.appendChild(wrap);
+        });
+    }
+    renderGallery();
+    document.getElementById("add-photo-btn").onclick = function() {
+        const url = prompt("Вставьте ссылку на фото (URL):");
+        if (url && url.startsWith("http")) {
+            const alt = prompt("Описание фото:");
+            galleryData.push({src:url,alt:alt||"Фото студенты"});
+            renderGallery();
+            showNotify("Фото добавлено!");
+        } else {
+            alert("Некорректный URL.");
+        }
+    };
+    // Fullscreen фото
+    function showGalleryFull(src) {
+        const modal = document.getElementById("gallery-modal");
+        modal.style.display = "flex";
+        modal.querySelector("img").src = src;
+    }
+    document.getElementById("close-modal").onclick = function() {
+        document.getElementById("gallery-modal").style.display = "none";
+    };
+    document.getElementById("gallery-modal").onclick = function(e){
+        if(e.target===this) this.style.display="none";
+    };
+
+    // --- Контактная форма (валидация, уведомление) ---
+    document.getElementById("contact-form").onsubmit = function(e){
+        e.preventDefault();
+        const name = document.getElementById("cf-name").value.trim();
+        const email = document.getElementById("cf-email").value.trim();
+        const msg = document.getElementById("cf-message").value.trim();
+        if (!name || !email || !msg) { alert("Заполните все поля!"); return; }
+        // Простейшая валидация email
+        if (!email.match(/.+@.+\..+/)) { alert("Введите корректный email!"); return; }
+        showNotify("Спасибо "+name+"! Ваше сообщение отправлено.");
+        e.target.reset();
+    };
+
+    // --- Уведомления ---
+    function showNotify(msg){
+        const notif = document.getElementById("notification");
+        notif.textContent = msg;
+        notif.style.display="block";
+        setTimeout(()=>notif.style.display="none",2400);
+    }
+    </script>
 </body>
 </html>
