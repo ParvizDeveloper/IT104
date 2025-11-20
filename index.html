@@ -1,258 +1,350 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>АТК-2451 | Легенды IT ТИТ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>АТК-2451 | ЛЕГЕНДЫ TIFT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg: #0d0d1a;
-            --accent: #00ffea;
-            --text: #e0e0ff;
-            --card: #1a1a2e;
+            --bg: #0a001a;
+            --text: #e0f8ff;
+            --primary: #00eeff;
+            --secondary: #ff0088;
+            --accent: #ff00ff;
+            --nav-bg: rgba(10,14,23,0.96);
+            --card: rgba(20,20,80,0.5);
+            --border: rgba(0,238,255,0.5);
+            --glow: 0 0 80px rgba(0,238,255,0.7);
         }
-        
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Roboto Mono', monospace;
-            overflow-x: hidden;
-            height: 100vh;
+        [data-theme="light"] {
+            --bg: #f0f8ff;
+            --text: #0f172a;
+            --primary: #0066ff;
+            --secondary: #e91e63;
+            --nav-bg: rgba(255,255,255,0.95);
+            --card: rgba(255,255,255,0.92);
         }
 
-        .matrix {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            opacity: 0.1;
-            z-index: 1;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Exo 2',sans-serif; overflow-x:hidden; }
 
         header {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
+            position:fixed; top:0; left:0; right:0; z-index:9999;
+            background:var(--nav-bg); backdrop-filter:blur(25px);
+            border-bottom:2px solid var(--border); padding:20px 0;
         }
-
-        .glitch {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 10vw, 9rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-shadow: 
-                0 0 10px var(--accent),
-                0 0 40px var(--accent),
-                0 0 80px var(--accent);
-            animation: glow 2s infinite alternate;
+        .nav-container { max-width:1500px; margin:0 auto; padding:0 40px; text-align:center; }
+        nav ul { display:flex; gap:50px; justify-content:center; flex-wrap:wrap; list-style:none; }
+        nav a {
+            color:var(--text); text-decoration:none; font-weight:800; font-size:1.2rem;
+            padding:14px 34px; border-radius:60px; transition:all 0.4s;
         }
+        nav a.active { background:var(--primary); color:#000; box-shadow:var(--glow); transform:scale(1.1); }
+        nav a:hover:not(.active) { background:rgba(0,238,255,0.25); transform:translateY(-4px); }
 
-        .glitch::before, .glitch::after {
-            content: 'АТК-2451';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+        .theme-toggle {
+            position:fixed; top:20px; right:30px; z-index:9999;
+            width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary));
+            border:none; cursor:pointer; box-shadow:var(--glow); display:flex; align-items:center; justify-content:center;
+            transition:all 0.7s cubic-bezier(0.68,-0.55,0.265,1.55);
         }
+        .theme-toggle i { font-size:2.4rem; color:#000; }
+        .theme-toggle:hover { transform:scale(1.3) rotate(360deg); box-shadow:0 0 120px var(--secondary); }
 
-        .glitch::before {
-            animation: glitch-1 0.5s infinite;
-            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-            transform: translate(-2px, -2px);
-            color: #ff00ff;
+        /* ГЛАВНАЯ — НОРМАЛЬНЫЙ РАЗМЕР, НО КРАСИВО */
+        .hero {
+            height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+            background:linear-gradient(135deg,#0f0022,#1a0033,#000);
         }
-
-        .glitch::after {
-            animation: glitch-2 0.5s infinite;
-            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-            transform: translate(2px, 2px);
-            color: #00ffff;
+        .hero h1 {
+            font-family:'Orbitron',sans-serif; font-size:12rem; font-weight:900;
+            background:linear-gradient(90deg,var(--primary),var(--secondary),#ff00ff,var(--primary));
+            -webkit-background-clip:text; background-clip:text; color:transparent;
+            text-shadow:var(--glow); animation:neonPulse 3s infinite alternate;
         }
+        .hero h2 {
+            font-size:6rem; color:var(--secondary); text-shadow:0 0 80px var(--secondary);
+            margin:20px 0; letter-spacing:12px;
+        }
+        .hero p {
+            font-size:2.8rem; font-weight:800; margin-top:40px;
+            background:linear-gradient(90deg,#00ffff,#ff00ff); -webkit-background-clip:text; color:transparent;
+        }
+        @keyframes neonPulse { from{filter:drop-shadow(0 0 40px var(--primary));} to{filter:drop-shadow(0 0 120px var(--secondary));} }
 
-        .subtitle {
-            font-size: 1.8rem;
-            margin-top: 20px;
-            opacity: 0.9;
-            letter-spacing: 8px;
+        /* НОВОСТИ ВНИЗУ ГЛАВНОЙ */
+        .news-block {
+            padding: 100px 40px 140px;
             text-align: center;
-        }
-
-        .cards {
-            padding: 100px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card {
             background: var(--card);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 234, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
+            border-top: 4px solid var(--primary);
+            margin-top: -100px;
+        }
+        .news-block h2 {
+            font-family:'Orbitron',sans-serif;
+            font-size: 6rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: var(--glow);
+            margin-bottom: 50px;
+        }
+        .news-placeholder {
+            font-size: 3rem;
+            font-weight: 800;
+            opacity: 0.9;
+            line-height: 1.4;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 1000% 1000%;
-            background: linear-gradient(45deg, transparent, rgba(0,255,234,0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.7s;
-            opacity: 0;
+        .page { display:none; opacity:0; transform:translateY(50px); transition:all 0.9s ease; min-height:100vh; padding-top:140px; }
+        .page.active { display:block; opacity:1; transform:translateY(0); }
+
+        .container { max-width:1500px; margin:0 auto; padding:40px; }
+
+        h2.title {
+            font-family:'Orbitron',sans-serif; font-size:6rem; text-align:center; color:var(--primary);
+            margin:80px 0 60px; text-shadow:var(--glow);
+            background:linear-gradient(90deg,var(--primary),var(--secondary));
+            -webkit-background-clip:text; color:transparent;
         }
 
-        .card:hover::before {
-            opacity: 1;
-            animation: shine 1.5s;
+        /* УМНОЕ РАСПИСАНИЕ */
+        .week-info {
+            text-align:center; margin-bottom:30px; font-size:1.4rem; opacity:0.9;
+            background:linear-gradient(90deg,var(--primary),var(--secondary)); -webkit-background-clip:text; color:transparent;
         }
+        .days-tabs { display:flex; justify-content:center; gap:25px; flex-wrap:wrap; margin:60px 0; }
+        .day-btn { padding:18px 40px; background:var(--card); border:3px solid var(--border); border-radius:60px;
+            color:var(--text); font-weight:800; font-size:1.3rem; cursor:pointer; transition:all 0.5s; }
+        .day-btn.active, .day-btn:hover { background:var(--primary); color:#000; box-shadow:var(--glow); transform:scale(1.1); }
 
-        .card:hover {
-            transform: translateY(-20px) scale(1.03);
-            border-color: var(--accent);
-            box-shadow: 0 0 40px rgba(0,255,234,0.4);
+        .schedule-table {
+            width:100%; border-collapse:collapse; background:var(--card); border-radius:25px;
+            overflow:hidden; box-shadow:var(--glow); margin:40px 0; display:none;
         }
+        .schedule-table.active { display:table; animation:fadeIn 0.8s; }
+        @keyframes fadeIn { from{opacity:0; transform:scale(0.95);} to{opacity:1; transform:scale(1);} }
 
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 2rem;
+        .schedule-table th {
+            background:linear-gradient(90deg,var(--primary),var(--secondary)); color:#000;
+            padding:22px; font-size:1.5rem; font-weight:900;
         }
-
-        footer {
-            text-align: center;
-            padding: 60px;
-            font-size: 1.2rem;
-            opacity: 0.7;
+        .schedule-table td {
+            padding:20px; text-align:center; border-bottom:1px solid var(--border);
+            font-size:1.2rem; transition:all 0.3s;
         }
+        .schedule-table tr:hover td { background:rgba(0,238,255,0.15); transform:scale(1.02); }
 
-        .konami {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5rem;
-            color: gold;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 999;
-            font-family: 'Orbitron', sans-serif;
+        .type { font-size:0.9rem; opacity:0.8; font-style:italic; }
+
+        /* ЛЕГЕНДЫ */
+        .legends-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:40px; }
+        .legend-card {
+            background:var(--card); border:3px solid var(--border); border-radius:30px;
+            padding:50px 30px; text-align:center; transition:all 0.6s cubic-bezier(0.175,0.885,0.32,1.275);
+            backdrop-filter:blur(15px);
         }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px var(--accent); }
-            to { text-shadow: 0 0 60px var(--accent), 0 0 100px var(--accent); }
+        .legend-card:hover {
+            transform:translateY(-40px) scale(1.12); border-color:var(--secondary);
+            box-shadow:0 40px 100px rgba(255,0,136,0.5);
         }
+        .legend-card h3 { font-size:2.8rem; color:var(--primary); margin-bottom:15px; text-shadow:0 0 30px var(--primary); }
+        .legend-card a { color:var(--secondary); font-size:2.2rem; font-weight:900; text-decoration:none; }
 
-        @keyframes glitch-1 {
-            0%,100% { transform: translate(0); }
-            20% { transform: translate(-5px, -5px); }
-            40% { transform: translate(5px, 5px); }
-            60% { transform: translate(-5px, 5px); }
-            80% { transform: translate(5px, -5px); }
-        }
+        .contact-card { max-width:1000px; margin:80px auto; padding:80px; background:var(--card); border:4px solid var(--primary); border-radius:40px; text-align:center; box-shadow:var(--glow); }
 
-        @keyframes glitch-2 {
-            0%,100% { transform: translate(0); }
-            20% { transform: translate(5px, 5px); }
-            40% { transform: translate(-5px, -5px); }
-            60% { transform: translate(5px, 5px); }
-            80% { transform: translate(-5px, -5px); }
-        }
+        footer { text-align:center; padding:120px 20px 80px; background:var(--nav-bg); border-top:2px solid var(--border); }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        @media (max-width:768px) {
+            .hero h1{font-size:7.5rem;} .hero h2{font-size:4rem;} .hero p{font-size:2rem;}
+            .news-block h2 {font-size:4rem;}
+            .news-placeholder {font-size:2rem;}
+            h2.title{font-size:4rem;} .day-btn{font-size:1.1rem; padding:14px 25px;}
         }
     </style>
 </head>
-<body>
-
-    <canvas class="matrix"></canvas>
+<body style="scroll-behavior:smooth;">
 
     <header>
-        <div>
-            <h1 class="glitch" data-text="АТК-2451">АТК-2451</h1>
-            <p class="subtitle">Ташкентский университет информационных технологий<br>Прикладная информатика • 2024–2028</p>
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-page="home">ГЛАВНАЯ</a></li>
+                    <li><a href="#" data-page="schedule">РАСПИСАНИЕ</a></li>
+                    <li><a href="#" data-page="legends">ЛЕГЕНДЫ</a></li>
+                    <li><a href="#" data-page="contact">СВЯЗЬ</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section class="cards">
-        <div class="card">
-            <h2>Мы — будущие архитекторы цифрового мира</h2>
-            <p>Алгоритмы, нейросети, кибербезопасность, разработка под Android/iOS, DevOps, Big Data — всё это наш хлеб насущный уже с первого курса.</p>
+    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+
+    <!-- ГЛАВНАЯ + НОВОСТИ ВНИЗУ -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <h1>АТК-2451</h1>
+            <h2>T I F T</h2>
+            <p>МЫ НЕ ПРОСТО ГРУППА</p>
+            <p></p>
         </div>
 
-        <div class="card">
-            <h2>Наши суперсилы</h2>
-            <ul style="margin-top: 20px; line-height: 2;">
-                <li>▸ Пишем код чище, чем душа младенца</li>
-                <li>▸ Ломаем баги одним взглядом</li>
-                <li>▸ Делаем дипломы, от которых преподаватели плачут (от счастья)</li>
-                <li>▸ Уже зарабатываем на фрилансе больше, чем некоторые выпускники</li>
-            </ul>
+        <!-- НОВОСТИ ПРЯМО ЗДЕСЬ -->
+        <div class="news-block">
+            <h2>НОВОСТИ</h2>
+            <p class="news-placeholder">
+                ПОКА НОВОСТЕЙ НЕТ<br>
+            </p>
         </div>
+    </div>
 
-        <div class="card">
-            <h2>Пасхалка для своих</h2>
-            <p>Нажми стрелки: ↑ ↑ ↓ ↓ ← → ← → B A<br><small>(Konami code — мы же айтишники 80 lvl)</small></p>
+    <!-- РАСПИСАНИЕ -->
+    <div id="schedule" class="page">
+        <div class="container">
+            <h2 class="title">РАСПИСАНИЕ</h2>
+            <div class="week-info">Неделя: 24 — 28 ноября 2025</div>
+
+            <div class="days-tabs">
+                <button class="day-btn active" data-day="monday">ПН</button>
+                <button class="day-btn" data-day="tuesday">ВТ</button>
+                <button class="day-btn" data-day="wednesday">СР</button>
+                <button class="day-btn" data-day="thursday">ЧТ</button>
+                <button class="day-btn" data-day="friday">ПТ</button>
+            </div>
+
+            <!-- ПОНЕДЕЛЬНИК -->
+            <table class="schedule-table active" id="monday">
+                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
+                <tr><td>1</td><td>09:00</td><td>Diskret tuzulmalari</td><td class="type">Лекция</td><td>QULDASHEVA N. K.</td><td>301 (II-bino)</td></tr>
+                <tr><td>2</td><td>10:30</td><td>Diskret tuzulmalari</td><td class="type">Лекция</td><td>QULDASHEVA N. K.</td><td>Lab 09 (II-bino)</td></tr>
+                <tr><td>3</td><td>12:00</td><td>Elektonika va sxemalar 1</td><td class="type">Лекция</td><td>NASRIDDINOV B. Z.</td><td>301 (II-bino)</td></tr>
+                <tr><td>4</td><td>14:00</td><td>Kompyuter tarmoqlari</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 05 (II-bino)</td></tr>
+            </table>
+
+            <!-- ВТОРНИК -->
+            <table class="schedule-table" id="tuesday">
+                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
+                <tr><td>1</td><td>09:00</td><td>Kompyuter tarmoqlari</td><td class="type">Лекция</td><td>NASRIDDINOV B. Z.</td><td>Lab 03 (II-bino)</td></tr>
+                <tr><td>2</td><td>10:30</td><td>Ma'lumotlar bazasi</td><td class="type">Лекция</td><td>MUSADJANOVA D. A.</td><td>Lab 03 (II-bino)</td></tr>
+            </table>
+
+            <!-- СРЕДА -->
+            <table class="schedule-table" id="wednesday">
+                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
+                <tr><td>1</td><td>09:00</td><td>Elektonika va sxemalar 1</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 07 (II-bino)</td></tr>
+                <tr><td>2</td><td>10:30</td><td>Kompyuter tarmoqlari</td><td class="type">Лекция</td><td>NASRIDDINOV B. Z.</td><td>Lab 03 (II-bino)</td></tr>
+                <tr><td>3</td><td>12:00</td><td>Ma'lumotlar bazasi</td><td class="type">Практика</td><td>MUSADJANOVA D. A.</td><td>Lab 03 (II-bino)</td></tr>
+            </table>
+
+            <!-- ЧЕТВЕРГ -->
+            <table class="schedule-table" id="thursday">
+                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
+                <tr><td>1</td><td>09:00</td><td>Ma'lumotlar bazasi</td><td class="type">Практика</td><td>MUSADJANOVA D. A.</td><td>Lab 05 (II-bino)</td></tr>
+                <tr><td>2</td><td>10:30</td><td>Elektonika va sxemalar 1</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 03 (II-bino)</td></tr>
+            </table>
+
+            <!-- ПЯТНИЦА -->
+            <table class="schedule-table" id="friday">
+                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
+                <tr><td>2</td><td>10:30</td><td>Diskret tuzulmalari</td><td class="type">Практика</td><td>QULDASHEVA N. K.</td><td>306 (II-bino)</td></tr>
+                <tr><td>3</td><td>12:00</td><td>Chiziqli algebra</td><td class="type">Практика</td><td>AKRAMOV N. S.</td><td>307 (II-bino)</td></tr>
+                <tr><td>4</td><td>14:00</td><td>Chiziqli algebra</td><td class="type">Практика</td><td>AKRAMOV N. S.</td><td>404 (II-bino)</td></tr>
+                <tr><td>5</td><td>15:30</td><td>Chiziqli algebra</td><td class="type">Лекция</td><td>AKRAMOV N. S.</td><td>406 (II-bino)</td></tr>
+            </table>
         </div>
-    </section>
+    </div>
+
+    <!-- ЛЕГЕНДЫ АТК-2451 -->
+    <div id="legends" class="page">
+        <div class="container">
+            <h2 class="title">ЛЕГЕНДЫ АТК-2451</h2>
+            <div class="legends-grid">
+                <div class="legend-card"><h3>Усмонбек</h3><a href="https://t.me/aqua2508" target="_blank">@aqua2508</a></div>
+                <div class="legend-card"><h3>Сардорбек</h3><a href="https://t.me/RS_Pov" target="_blank">@RS_Pov</a></div>
+                <div class="legend-card"><h3>Тимур</h3><a href="https://t.me/iittlit" target="_blank">@iittlit</a></div>
+                <div class="legend-card"><h3>Умиджон</h3><a href="https://t.me/umid70_03" target="_blank">@umid70_03</a></div>
+                <div class="legend-card"><h3>Асаль</h3><a href="https://t.me/" target="_blank">@yzernettt</a></div>
+                <div class="legend-card"><h3>Алиакбар</h3><a href="https://t.me/I1alia" target="_blank">@I1alia</a></div>
+                <div class="legend-card"><h3>Шахзо</h3><a href="https://t.me/Lszkan" target="_blank">@Lszkan</a></div>
+                <div class="legend-card"><h3>Достонбек</h3><a href="https://t.me/Dson" target="_blank">@Dos</a></div>
+                <div class="legend-card"><h3>Дарья</h3><a href="https://t.me/crazieso" target="_blank">@crazieso</a></div>
+                <div class="legend-card"><h3>Дониёр</h3><a href="https://t.me/doni_7466" target="_blank">@doni_7466</a></div>
+                <div class="legend-card"><h3>Марат</h3><a href="https://t.me/mara_festival" target="_blank">@mara_festival</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- СВЯЗЬ -->
+    <div id="contact" class="page">
+        <div class="container">
+            <h2 class="title">СВЯЗЬ</h2>
+            <div class="contact-card">
+                <h3 style="font-size:3rem; color:var(--primary);">ГОСПОДИН КОД — ЗДЕСЬ</h3>
+                <p style="font-size:2rem; margin:40px 0;">Баги, идеи, мемы, фотки — всё кидай ему</p>
+                <div style="margin-top:50px;">
+                    <p style="font-size:2.5rem; margin-bottom:20px;"><strong>Сайт создал: Тимур</strong></p>
+                    <a href="https://t.me/iittlit" target="_blank" style="color:var(--secondary); font-size:4rem; font-weight:900;">@iittlit</a>
+                    <p style="margin-top:20px; font-size:2rem;">Тимур — АТК-2451</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        АТК-2451 — группа, от которой Ташкент ещё не оправился © 2025<br>
-        <small>С любовью и багфиксами от твоих будущих коллег</small>
+        <p style="font-size:2rem;"><strong>АТК-2451 — ЛУЧШАЯ ГРУППА ВО ВСЕЛЕННОЙ</strong></p>
+        <p style="margin-top:20px; font-size:1.6rem;">
+            Сайт сделал — <a href="https://t.me/iittlit" style="color:var(--primary); font-weight:900;">@iittlit</a>
+        </p>
     </footer>
 
-    <div class="konami" id="easter">YOU WIN! 🎰</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/matrix-rain@1.0.0/matrix.min.js"></script>
     <script>
-        // Matrix rain background
-        const canvas = document.querySelector('.matrix');
-        const matrixRain(canvas);
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+            const pages = document.querySelectorAll('.page');
+            const dayBtns = document.querySelectorAll('.day-btn');
+            const tables = document.querySelectorAll('.schedule-table');
+            const toggle = document.getElementById('themeToggle');
+            const icon = toggle.querySelector('i');
 
-        // Konami code easter egg
-        let konamiCode = [];
-        const correctCode = [38,38,40,40,37,39,37,39,66,65];
-
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.keyCode);
-            if (konamiCode.length > 10) konamiCode.shift();
-
-            if (JSON.stringify(konamiCode) === JSON.stringify(correctCode)) {
-                document.getElementById('easter').style.opacity = '1';
-                document.getElementById('easter').style.transition = 'all 2s';
-                setTimeout(() => {
-                    document.getElementById('easter').style.opacity = '0';
-                }, 4000);
-
-                // Дополнительный сюрприз: конфетти!
-                confetti({
-                    particleCount: 300,
-                    spread: 360,
-                    origin: { y: 0.6 }
+            // Переключение страниц
+            navLinks.forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    navLinks.forEach(a => a.classList.remove('active'));
+                    pages.forEach(p => { p.classList.remove('active'); p.style.opacity = '0'; });
+                    link.classList.add('active');
+                    const page = document.getElementById(link.dataset.page);
+                    page.classList.add('active');
+                    setTimeout(() => page.style.opacity = '1', 100);
                 });
-                konamiCode = [];
+            });
+
+            // Переключение дней в расписании
+            dayBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    dayBtns.forEach(b => b.classList.remove('active'));
+                    tables.forEach(t => t.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById(btn.dataset.day).classList.add('active');
+                });
+            });
+
+            // Тема
+            if (localStorage.getItem('theme') === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                icon.classList.replace('fa-moon', 'fa-sun');
             }
+            toggle.addEventListener('click', () => {
+                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+                document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+                icon.classList.toggle('fa-sun');
+                icon.classList.toggle('fa-moon');
+                localStorage.setItem('theme', isLight ? 'dark' : 'light');
+            });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
