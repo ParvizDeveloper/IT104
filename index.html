@@ -126,6 +126,36 @@
         .creator i { color: #64d8ff; font-size: 44px; vertical-align: middle; margin-right: 10px; }
         .creator span { font-size: 52px; background: linear-gradient(135deg, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .info { margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.25); border-radius: 16px; color: white; text-align: center; font-size: 15px; }
+        .hemis-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 18px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(79,70,229,0.3);
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
+        }
+        .hemis-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(79,70,229,0.4);
+        }
+        .hemis-btn i {
+            margin-right: 12px;
+            font-size: 24px;
+        }
+        @media (max-width: 500px) {
+            .card { padding: 30px 20px; }
+            h1 { font-size: 32px; }
+            .big { font-size: 42px; }
+            .hemis-btn { font-size: 18px; padding: 16px; }
+        }
     </style>
 </head>
 <body>
@@ -161,6 +191,10 @@
     <div class="info">
         Пропустил пару — в журнале сразу 2 часа
     </div>
+
+    <a href="https://my.hemis.uz/dashboard" target="_blank" class="hemis-btn">
+        <i class="fas fa-external-link-alt"></i> Перейти в Hemis
+    </a>
 </div>
 
 <div class="creator">
