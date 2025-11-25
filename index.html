@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пропуски без Красной Зоны</title>
+    <title>Пропуски — не отчислят</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;900&display=swap');
@@ -13,43 +13,42 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 20px 10px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
         }
         .card {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255,255,255,0.97);
             backdrop-filter: blur(20px);
-            padding: 50px 40px;
+            padding: 40px 25px;
             border-radius: 32px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 540px;
-            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            max-width: 500px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.4);
         }
         h1 {
             text-align: center;
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 900;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .sub {
             text-align: center;
             color: #64748b;
             font-size: 17px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
         label {
             display: block;
-            margin: 24px 0 10px;
+            margin: 22px 0 10px;
             font-weight: 600;
             color: #1e293b;
-            font-size: 16px;
+            font-size: 17px;
         }
         input {
             width: 100%;
@@ -57,118 +56,110 @@
             border: none;
             background: #f8fafc;
             border-radius: 16px;
-            font-size: 18px;
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
+            font-size: 19px;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.06);
             transition: all 0.3s;
         }
         input:focus {
             outline: none;
             background: white;
-            box-shadow: 0 0 0 4px rgba(102,126,234,0.2);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 4px rgba(102,126,234,0.25);
         }
         .result {
             margin-top: 40px;
-            padding: 32px;
+            padding: 32px 24px;
             border-radius: 24px;
             text-align: center;
             background: white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.4s;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
-        .safe { border: 3px solid #34d399; }
-        .warning { border: 3px solid #facc15; }
-        .danger { border: 3px solid #f87171; animation: pulse 2s infinite; }
+        .safe { border: 4px solid #34d399; }
+        .warning { border: 4px solid #facc15; }
+        .danger { border: 4px solid #f87171; animation: pulse 2s infinite; }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(248,113,113,0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(248,113,113,0); }
-            100% { box-shadow: 0 0 0 0 rgba(248,113,113,0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(248,113,113,0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(248,113,113,0); }
         }
 
         .big {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 900;
-            margin: 10px 0;
+            line-height: 1.2;
             background: linear-gradient(135deg, #10b981, #059669);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .danger .big { background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .danger .big { background: linear-gradient(135deg, #ef4444, #b91c1c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .warning .big { background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .stats {
             margin-top: 20px;
             font-size: 18px;
-            line-height: 2;
+            line-height: 1.9;
             color: #475569;
         }
+        .fatal {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 19px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #f87171;
+        }
         .creator {
-            margin-top: 70px;
+            margin-top: 60px;
             text-align: center;
         }
         .creator a {
             color: white;
             text-decoration: none;
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 900;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
             display: inline-block;
             transition: transform 0.3s;
         }
-        .creator a:hover {
-            transform: scale(1.1);
-        }
-        .creator i {
-            color: #64d8ff;
-            margin-right: 12px;
-            font-size: 40px;
-            vertical-align: middle;
-        }
-        .creator span {
-            font-size: 50px;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .info {
-            margin-top: 20px;
-            padding: 16px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 16px;
-            color: white;
-            text-align: center;
-            font-size: 15px;
-        }
+        .creator a:hover { transform: scale(1.15); }
+        .creator i { color: #64d8ff; font-size: 44px; vertical-align: middle; margin-right: 10px; }
+        .creator span { font-size: 52px; background: linear-gradient(135deg, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .info { margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.25); border-radius: 16px; color: white; text-align: center; font-size: 15px; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <h1>Пропуски</h1>
-    <div class="sub">Пропуск пары = 2 часа в журнале • Красная зона = 25%</div>
+    <div class="sub">1 пара = 2 часа в журнале • 25% = недопуск</div>
 
     <label>Всего часов по предмету</label>
     <input type="number" id="totalHours" value="140" oninput="calc()">
 
-    <label>Уже пропустил в процентах (%) — самый удобный способ</label>
+    <label>Уже пропустил (%)</label>
     <input type="number" step="0.1" id="percent" value="12" oninput="calcFromPercent()">
 
-    <label>Или сколько пар уже прогулял</label>
+    <label>Или сколько пар прогулял</label>
     <input type="number" step="0.1" id="pairs" value="8.4" oninput="calcFromPairs()">
 
     <div id="result" class="result safe">
         <div class="big">Можно ещё <span id="safePairs">9</span> пар</div>
-        <div id="status" style="font-size:24px;font-weight:700;margin:15px 0">Всё под контролем</div>
+        <div id="status" style="font-size:26px;font-weight:700;margin:15px 0">Всё под контролем</div>
+        
         <div class="stats">
-            Пропущено: <strong><span id="missedHours">16.8</span> ч</strong> из <strong><span id="totalH">140</span> ч</strong> → 
-            <strong><span id="missedPercent">12</span>%</strong><br><br>
-            Красная зона с <strong>35 ч</strong> → это <strong><span id="redPairs">17</span></strong> пар
+            Пропущено: <strong><span id="missedHours">16.8</span> ч</strong> из <strong><span id="totalH">140</span> ч</strong> → <strong><span id="missedPercent">12</span>%</strong><br><br>
+            Красная зона: <strong><span id="redHours">35</span> ч</strong> = <strong><span id="redPairs">17</span></strong> пар
+        </div>
+
+        <div id="fatalLine" class="fatal" style="display:none;">
+            <strong>ВНИМАНИЕ!</strong><br>
+            <span id="fatalText"></span>
         </div>
     </div>
 
     <div class="info">
-        Одна пара = 2 часа в журнале • 25% = недопуск к сессии
+        Пропустил пару — в журнале сразу 2 часа
     </div>
 </div>
 
@@ -176,8 +167,8 @@
     <a href="https://t.me/iittlit" target="_blank">
         <i class="fab fa-telegram-plane"></i> <span>@iittlit</span>
     </a>
-    <div style="color:white;margin-top:10px;font-size:18px;opacity:0.9;">
-        Сделал с любовью для всех прогульщиков
+    <div style="color:white;margin-top:12px;font-size:19px;opacity:0.9;">
+        Сделал, чтобы ты не вылетел
     </div>
 </div>
 
@@ -213,31 +204,48 @@ function calcFromPairs() {
 }
 
 function update(t, mh, mp) {
-    const redH = t * 0.25;
-    const redP = Math.floor(redH / 2);
-    const safe = Math.max(0, redP - mp);
+    const redHours = t * 0.25;
+    const redPairsExact = redHours / 2;
+    const redPairsFloor = Math.floor(redPairsExact);
+    const fatalPair = Math.ceil(redPairsExact);  // эта пара уже 25%+
+
+    const safeLeft = Math.max(0, redPairsFloor - mp);
     const perc = (mh / t * 100).toFixed(1);
 
     document.getElementById('totalH').textContent = t;
     document.getElementById('missedHours').textContent = mh.toFixed(1);
     document.getElementById('missedPercent').textContent = perc;
-    document.getElementById('redPairs').textContent = redP;
-    document.getElementById('safePairs').textContent = safe;
+    document.getElementById('redHours').textContent = redHours.toFixed(1);
+    document.getElementById('redPairs').textContent = redPairsFloor;
+    document.getElementById('safePairs').textContent = safeLeft;
 
     const res = document.getElementById('result');
     const stat = document.getElementById('status');
+    const fatalBlock = document.getElementById('fatalLine');
+    const fatalText = document.getElementById('fatalText');
 
-    if (mh >= redH) {
-        res.className = 'result8 danger';
-        stat.textContent = 'ТЫ В КРАСНОЙ ЗОНЕ!';
-    } else if (safe <= 2) {
+    if (mh >= redHours) {
+        res.className = 'result danger';
+        stat.textContent = 'ТЫ УЖЕ В КРАСНОЙ ЗОНЕ!';
+        fatalText.innerHTML = `Ты уже пропустил <strong>${mp.toFixed(1)}</strong> пар — это больше 25%!<br>Срочно ходи на пары!`;
+        fatalBlock.style.display = 'block';
+    } else if (mp >= fatalPair - 0.1) {
+        res.className = 'result danger';
+        stat.textContent = 'КРИТИЧЕСКИ!';
+        fatalText.innerHTML = `<strong>${fatalPair}-я пара</strong> — это уже <strong>25% и больше</strong>!<br>Если пропустишь её — пиздец`;
+        fatalBlock.style.display = 'block';
+    } else if (safeLeft <= 2) {
         res.className = 'result warning';
         stat.textContent = 'Осталось мало...';
+        fatalText.innerHTML = `Ещё <strong>${3 - safeLeft}</strong> пары — и <strong>${fatalPair}-я пара</strong> тебя убьёт`;
+        fatalBlock.style.display = 'block';
     } else {
         res.className = 'result safe';
-        stat.textContent = 'Можно спать спокойно';
+        stat.textContent = 'Можно расслабиться';
+        fatalBlock.style.display = 'none';
     }
 }
+
 calc();
 </script>
 
