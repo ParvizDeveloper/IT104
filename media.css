@@ -1,0 +1,179 @@
+
+@media (max-width: 768px) {
+
+  header {
+    padding: 14px 10px;
+  }
+
+  .nav-container {
+    padding: 0 10px;
+  }
+
+  nav ul {
+    gap: 14px;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .theme-toggle {
+    width: 56px;
+    height: 56px;
+    top: 14px;
+    right: 14px;
+  }
+
+  .theme-toggle i {
+    font-size: 1.6rem;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 0 16px;
+  }
+
+  .hero h1 {
+    font-size: 5rem;
+  }
+
+  .hero h2 {
+    font-size: 2.4rem;
+    letter-spacing: 6px;
+  }
+
+  .hero p {
+    font-size: 1.4rem;
+    margin-top: 24px;
+  }
+
+  /* ===== NEWS ===== */
+  .news-block {
+    padding: 60px 20px 80px;
+  }
+
+  .news-block h2 {
+    font-size: 3rem;
+  }
+
+  .news-block h1 {
+    font-size: 1.6rem;
+  }
+
+  /* ===== COMMON ===== */
+  .container {
+    padding: 20px;
+  }
+
+  h2.title {
+    font-size: 3rem;
+    margin: 40px 0;
+  }
+
+  /* ===== SCHEDULE ===== */
+  .schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 30px;
+  }
+
+  .day-card {
+    padding: 24px 20px;
+  }
+
+  .day-title {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+  }
+
+  .lesson {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px 0;
+  }
+
+  .time {
+    font-size: 1rem;
+  }
+
+  .subject {
+    font-size: 1rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    gap: 6px 12px;
+  }
+
+  .legends-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .legend-card {
+    padding: 30px 20px;
+  }
+
+  .legend-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .legend-card a {
+    font-size: 1.2rem;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-card {
+    padding: 30px 20px;
+    margin: 40px auto;
+  }
+
+  .contact-card h3 {
+    font-size: 2rem !important;
+  }
+
+  .contact-card p {
+    font-size: 1.4rem !important;
+  }
+
+  .contact-card a {
+    font-size: 2.2rem !important;
+  }
+
+  footer {
+    padding: 60px 20px 40px;
+  }
+
+  footer p {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+
+  nav a {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+
+  .hero h1 {
+    font-size: 4.2rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .day-title {
+    font-size: 1.6rem;
+  }
+
+  .subject {
+    font-size: 0.95rem;
+  }
+}

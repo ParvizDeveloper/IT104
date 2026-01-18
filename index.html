@@ -7,19 +7,18 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
-    <!-- Подключаем отдельный CSS файл -->
     <link rel="stylesheet" href="in.css">
+    <link rel="stylesheet" href="media.css">
 </head>
 <body style="scroll-behavior:smooth;">
     <header>
         <div class="nav-container">
             <nav>
                 <ul>
-                    <li><a href="#" class="active" data-page="home">ГЛАВНАЯ</a></li>
-                    <li><a href="#" data-page="schedule">РАСПИСАНИЕ</a></li>
-                    <li><a href="#" data-page="legends">ЛЕГЕНДЫ</a></li>
-                    <li><a href="#" data-page="contact">СВЯЗЬ</a></li>
+                    <li><a href="#" class="active" data-page="home">MAIN</a></li>
+                    <li><a href="#" data-page="schedule">SCHEDULE</a></li>
+                    <li><a href="#" data-page="legends">LEGENDS</a></li>
+                    <li><a href="#" data-page="contact">CONTACT</a></li>
                 </ul>
             </nav>
         </div>
@@ -30,18 +29,17 @@
     <!-- ГЛАВНАЯ + НОВОСТИ -->
     <div id="home" class="page active">
         <div class="hero">
-            <h1>АТК-2451</h1>
-            <h2>T I F T</h2>
-            <p>МЫ НЕ ПРОСТО ГРУППА</p>
+            <h1>IT104</h1>
+            <h2>MILLAT UMIDI</h2>
+            <p>WE're NOT JUST "GROUP"</p>
         </div>
         <div class="news-block">
-            <h2>НОВОСТИ</h2>
+            <h2>NEWS</h2>
             
             <br>
-            <h1>Третий семестр: ❌ завершён</h1>
-            <h1>Сессия: ⏳ на подходе</h1>
-            <h1>Каникулы: 🎉 уже </h1>
-        <br>
+            <h1>The beginning of the second semester</h1>
+            <h1>Session: all of January</h1>
+        <!-- <br>
             <h1>Режим активирован:</h1>
             </br>
             <br>
@@ -50,80 +48,107 @@
             <h1>3.В панике повторяем билеты 31 декабря</h1>
             <h1>4.Сдаём всё на 4 и 5 🎯</h1>
             <h1>Мы крутые, мы справимся! 💥</h1>
-         </br>   
+         </br>    -->
         </br>    
         </div>
     </div>
 
     <!-- РАСПИСАНИЕ -->
     <div id="schedule" class="page">
-        <div class="container">
-            <h2 class="title">Отдыхаем</h2>
-            <h2 class="title">Скоро Сессия</h2>
-            
-            
-   
-            <div class="days-tabs">
-                <!--<button class="day-btn active" data-day="monday">ПН</button>
-                <button class="day-btn" data-day="tuesday">ВТ</button>
-                <button class="day-btn" data-day="wednesday">СР</button>
-                <button class="day-btn" data-day="thursday">ЧТ</button>
-                <button class="day-btn" data-day="friday"><h1>Отдыхаем⏳</h1></button>-->
+  <div class="container">
+
+    <div class="schedule-grid">
+
+      <div class="day-card">
+        <h3 class="day-title">Wednesday</h3>
+
+        <div class="lesson">
+          <span class="time">11:40 - 12:50</span>
+          <div class="info">
+            <div class="subject">Humand and AI Interaction</div>
+            <div class="meta">
+              <span class="type">Lecture</span>
+              <span>Tulkinova Mushtariy</span>
+              <span>301 (B-campus)</span>
             </div>
-
-            <!--<table class="schedule-table active" id="monday">
-                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
-                <tr><td>1</td><td>09:00</td><td>Diskret tuzulmalari</td><td class="type">Лекция</td><td>QULDASHEVA N. K.</td><td>301 (II-bino)</td></tr>
-                <tr><td>2</td><td>10:30</td><td>Diskret tuzulmalari</td><td class="type">Лекция</td><td>QULDASHEVA N. K.</td><td>Lab 09 (II-bino)</td></tr>
-                <tr><td>3</td><td>12:00</td><td>Elektonika va sxemalar 1</td><td class="type">Лекция</td><td>NASRIDDINOV B. Z.</td><td>301 (II-bino)</td></tr>
-                <tr><td>4</td><td>14:00</td><td>Kompyuter tarmoqlari</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 05 (II-bino)</td></tr>
-            </table>
-
-            <table class="schedule-table" id="tuesday">
-                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
-                <tr><td>1</td><td>09:00</td><td>Kompyuter tarmoqlari</td><td class="type">Лекция</td><td>NASRIDDINOV B. Z.</td><td>Lab 03 (II-bino)</td></tr>
-                <tr><td>2</td><td>10:30</td><td>Ma'lumotlar bazasi</td><td class="type">Лекция</td><td>MUSADJANOVA D. A.</td><td>Lab 03 (II-bino)</td></tr>
-            </table>
-
-            <table class="schedule-table" id="wednesday">
-                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
-                <tr><td>1</td><td>09:00</td><td>Elektonika va sxemalar 1</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 07 (II-bino)</td></tr>
-                <tr><td>2</td><td>10:30</td><td>Kompyuter tarmoqlari</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 03 (II-bino)</td></tr>
-                <tr><td>3</td><td>12:00</td><td>Ma'lumotlar bazasi</td><td class="type">Практика</td><td>MUSADJANOVA D. A.</td><td>Lab 03 (II-bino)</td></tr>
-            </table>
-
-            <table class="schedule-table" id="thursday">
-                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
-                <tr><td>1</td><td>09:00</td><td>Ma'lumotlar bazasi</td><td class="type">Практика</td><td>MUSADJANOVA D. A.</td><td>Lab 05 (II-bino)</td></tr>
-                <tr><td>2</td><td>10:30</td><td>Elektonika va sxemalar 1</td><td class="type">Практика</td><td>NASRIDDINOV B. Z.</td><td>Lab 03 (II-bino)</td></tr>
-            </table>
-
-            <table class="schedule-table" id="friday">
-                <tr><th>№</th><th>Время</th><th>Предмет</th><th>Тип</th><th>Преподаватель</th><th>Аудитория</th></tr>
-                <tr><td>3</td><td>12:00</td><td>Chiziqli algebra</td><td class="type">Лекция</td><td>AKRAMOV N. S.</td><td>307 (II-bino)</td></tr>
-                <tr><td>4</td><td>14:00</td><td>Chiziqli algebra</td><td class="type">Практика</td><td>AKRAMOV N. S.</td><td>404 (II-bino)</td></tr>
-                <tr><td>5</td><td>15:30</td><td>Diskret tuzulmalari</td><td class="type">Практика</td><td>QULDASHEVA N. K.</td><td>Lab 09 (II-bino)</td></tr>
-            </table>-->
+          </div>
         </div>
-    </div>
 
-    <!-- ЛЕГЕНДЫ АТК-2451 -->
+      </div>
+
+      <div class="day-card">
+        <h3 class="day-title">Thursday</h3>
+
+        <div class="lesson">
+          <span class="time">13:30 - 14:40</span>
+          <div class="info">
+            <div class="subject">Humand and AI Interaction</div>
+            <div class="meta">
+              <span class="type">IT-Lab</span>
+              <span>Tulkinova Mushtariy</span>
+              <span>405 (C-campus)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson">
+          <span class="time">14:50 - 16:00</span>
+          <div class="info">
+            <div class="subject">Buisness Communication Skills</div>
+            <div class="meta">
+              <span class="type">IT-Lab</span>
+              <span>Yusupova Zaynab</span>
+              <span>305 (C-campus)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson">
+          <span class="time">16:10 - 17:20</span>
+          <div class="info">
+            <div class="subject">Buisness Communication Skills</div>
+            <div class="meta">
+              <span class="type">IT-Lab</span>
+              <span>Yusupova Zaynab</span>
+              <span>305 (C-campus)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      
+    </div>
+  </div>
+</div>
+
+
+    <!-- LEGENDS OF IT104 -->
     <div id="legends" class="page">
         <div class="container">
-            <h2 class="title">ЛЕГЕНДЫ АТК-2451</h2>
+            <h2 class="title">LEGENDS OF IT104</h2>
             <div class="legends-grid">
-                <div class="legend-card"><h3>Бурхон легенда учитель</h3><a href="https://t.me/nsrnvbz" target="_blank">@nsrnvbz</a></div>
-                <div class="legend-card"><h3>Усмонбек Староста</h3><a href="https://t.me/aqua2508" target="_blank">@aqua2508</a></div>
-                <div class="legend-card"><h3>Тимур</h3><a href="https://t.me/iittlit" target="_blank">@iittlit</a></div>
-                <div class="legend-card"><h3>Сардорбек</h3><a href="https://t.me/RS_Pov" target="_blank">@RS_Pov</a></div>
-                <div class="legend-card"><h3>Умиджон</h3><a href="https://t.me/umid70_03" target="_blank">@umid70_03</a></div>
-                <div class="legend-card"><h3>Асаль</h3><a href="" target="_blank"> no name</a></div>
-                <div class="legend-card"><h3>Алиакбар</h3><a href="https://t.me/I1alia" target="_blank">@I1alia</a></div>
-                <div class="legend-card"><h3>Шахзод</h3><a href="https://t.me/Lszkan" target="_blank">@Lszkan</a></div>
-                <div class="legend-card"><h3>Достонбек</h3><a href="" target="_blank"> no name</a></div>
-                <div class="legend-card"><h3>Дарья</h3><a href="https://t.me/crazieso" target="_blank">@crazieso</a></div>
-                <div class="legend-card"><h3>Дониёр</h3><a href="https://t.me/doni_7466" target="_blank">@doni_7466</a></div>
-                <div class="legend-card"><h3>Марат</h3><a href="https://t.me/mara_festival" target="_blank">@mara_festival</a></div>
+                <div class="legend-card"><h3>Aziz Turgunov (LEGEND)</h3><a href="https://t.me/Aziz_Turgunow" target="_blank">@Aziz_Turgunow</a></div>
+                <div class="legend-card"><h3>Shahina Ambassador</h3><a href="https://t.me/shaxinashokirova" target="_blank">@shaxinashokirova</a></div>
+                <div class="legend-card"><h3>Paranoia</h3><a href="https://t.me/prnoia_0" target="_blank">@prnoia_0</a></div>
+                <div class="legend-card"><h3>Tigran</h3><a href="https://t.me/Tgrn1337" target="_blank">@Tgrn1337</a></div>
+                <div class="legend-card"><h3>Bobur</h3><a href="https://t.me/B_un_hojaev" target="_blank">@B_un_hojaev</a></div>
+                <div class="legend-card"><h3>Dilnura</h3><a href="" target="_blank">no name</a></div>
+                <div class="legend-card"><h3>Asslidin</h3><a href="https://realasliddin" target="_blank">@realasliddin</a></div>
+                <div class="legend-card"><h3>Abdurashid</h3><a href="https://t.me/abdulrash1d" target="_blank">@abdulrash1d</a></div>
+                <div class="legend-card"><h3>Ibrokhim</h3><a href="https://t.me/ibroxim2412" target="_blank">@ibroxim2412</a></div>
+                <div class="legend-card"><h3>Twin</h3><a href="https://FellTarnished" target="_blank">@FellTarnished</a></div>
+                <div class="legend-card"><h3>Xabibullo</h3><a href="https://t.me/mixbrendmensunderwear" target="_blank">@mixbrendm...</a></div>
+                <div class="legend-card"><h3>Shoxjaxon</h3><a href="" target="_blank">no name</a></div>
+                <div class="legend-card"><h3>Abduqodir</h3><a href="https://t.me/abduqodiraliqulov" target="_blank">@abduqodiraliqulov</a></div>
+                <div class="legend-card"><h3>Hojiakbar</h3><a href="https://t.me/hojiakbarisrofilov" target="_blank">@hojiakbarisrofilov</a></div>
+                <div class="legend-card"><h3>Muhammad</h3><a href="https://t.me/muhammadlyusuf" target="_blank">@muhammadlyusuf</a></div>
+                <div class="legend-card"><h3>Suxrob</h3><a href="https://t.me/Nurid1novic" target="_blank">@Nurid1novic</a></div>
+                <div class="legend-card"><h3>Laylo</h3><a href="https://t.me/laylo_pardayeva" target="_blank">@laylo_pardayeva</a></div>
+                <div class="legend-card"><h3>Muslima</h3><a href="https://t.me/bakhodirovnams" target="_blank">@bakhodirovnams</a></div>
+                <div class="legend-card"><h3>Wiz</h3><a href="https://t.me/kagetsu07" target="_blank">@kagetsu07</a></div>
+                <div class="legend-card"><h3>Abror</h3><a href="https://t.me/I_am_a_student" target="_blank">@I_am_a_student</a></div>
             </div>
         </div>
     </div>
@@ -131,24 +156,24 @@
     <!-- СВЯЗЬ -->
     <div id="contact" class="page">
         <div class="container">
-            <h2 class="title">СВЯЗЬ</h2>
+            <h2 class="title">CONTACT</h2>
             <div class="contact-card">
-                <h3 style="font-size:3rem; color:var(--primary);">Наша комнда здесь</h3>
-                <p style="font-size:2rem; margin:40px 0;">Баги, идеи, мемы, фотки — всё кидай ему</p>
+                <h3 style="font-size:3rem; color:var(--primary);">Our team is Here</h3>
+                <p style="font-size:2rem; margin:40px 0;">BAGs, ideas, memes, pictures — send it us now</p>
                 <div style="margin-top:50px;">
-                    <p style="font-size:2.5rem; margin-bottom:20px;"><strong>Сайт создал</strong></p>
-                    <a href="https://t.me/iittlit" target="_blank" style="color:var(--secondary); font-size:4rem; font-weight:900;">Tima</a>
-                    <p style="margin-top:20px; font-size:2rem;">Староста </p>
-                    <a href="https://t.me/aqua2508" target="_blank" style="color:var(--secondary); font-size:4rem; font-weight:900;">Усмон</a>
+                    <p style="font-size:2.5rem; margin-bottom:20px;"><strong>Website made by</strong></p>
+                    <a href="https://t.me/prnoia_0" target="_blank" style="color:var(--secondary); font-size:4rem; font-weight:900;">Parviz</a>
+                    <p style="margin-top:20px; font-size:2rem;">Ambassador </p>
+                    <a href="https://t.me/shaxinashokirova" target="_blank" style="color:var(--secondary); font-size:4rem; font-weight:900;">Shahina</a>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p style="font-size:2rem;"><strong>АТК-2451 — ЛУЧШАЯ ГРУППА ВО ВСЕЛЕННОЙ</strong></p>
+        <p style="font-size:2rem;"><strong>IT 104 - A GROUP WHERE LEGENDS GATHERED</strong></p>
         <p style="margin-top:20px; font-size:1.6rem;">
-            Сайт сделал — <a href="https://t.me/iittlit" style="color:var(--primary); font-weight:900;">Tima</a>
+            Website made by — <a href="https://t.me/prnoia_0" style="color:var(--primary); font-weight:900;">Paranoia</a>
         </p>
     </footer>
 
