@@ -72,56 +72,71 @@
   }
 
   /* ===== SCHEDULE ===== */
-  .schedule-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: 30px;
-  }
+.schedule-grid {
+  display: grid;
+  /* Формирует 3 колонки на десктопе; карточки не растягиваются шире 360px */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
+  justify-content: center; /* Центрирует карточку, если она всего одна */
+  gap: 24px;
+  margin-top: 30px;
+}
 
-  .day-card {
-    padding: 24px 20px;
-  }
+.day-card {
+  padding: 24px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  .day-title {
-    font-size: 1.8rem;
-    margin-bottom: 18px;
-  }
+.day-title {
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+}
 
-  .lesson {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 14px 0;
-  }
+.lesson {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 14px 0;
+}
 
-  .time {
-    font-size: 1rem;
-  }
+.time {
+  font-size: 1rem;
+}
 
-  .subject {
-    font-size: 1rem;
-  }
+.subject {
+  font-size: 1rem;
+}
 
-  .meta {
-    font-size: 0.85rem;
-    gap: 6px 12px;
-  }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.85rem;
+  gap: 6px 12px;
+}
 
-  .legends-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+/* ===== LEGENDS ===== */
+.legends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
 
-  .legend-card {
-    padding: 30px 20px;
-  }
+.legend-card {
+  padding: 30px 20px;
+}
 
-  .legend-card h3 {
-    font-size: 1.6rem;
-  }
+h3 {
+  cursor: default;
+}
 
-  .legend-card a {
-    font-size: 1.2rem;
-  }
+.legend-card h3 {
+  font-size: 1.6rem;
+}
+
+.legend-card a {
+  font-size: 1.2rem;
+}
 
   /* ===== CONTACT ===== */
   .contact-card {
